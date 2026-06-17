@@ -1,0 +1,6 @@
+{
+  "name": "IACRECE",
+  "description": "IA Inmobiliaria 24/7 que atiende consultas, califica leads y reserva visitas de forma instantánea fuera de horario comercial.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
