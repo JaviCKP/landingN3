@@ -7,9 +7,10 @@ export interface Message {
 }
 
 export interface CalculatorState {
-  leads: number;
-  minutesPerLead: number;
-  avgCommission: number;
+  weeklyLeads: number;
+  avgPropertyPrice: number;
+  commissionPercent: number;
+  responseTimeKey: 'menos5' | 'hasta1h' | 'de2a4h' | 'finde';
 }
 
 export interface CaseStudyPreset {

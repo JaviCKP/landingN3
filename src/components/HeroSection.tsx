@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Sparkles, Calendar, ArrowRight, Play, Check } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import PhoneMockup from './PhoneMockup';
 
 interface HeroSectionProps {
@@ -27,15 +27,13 @@ export default function HeroSection({ onOpenDemo }: HeroSectionProps) {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex self-start items-center gap-2 px-3 py-1 rounded-full bg-cyan-bright/10 border border-cyan-bright/25 text-cyan-bright text-xs font-mono tracking-wide uppercase"
+              className="inline-flex self-start items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-bright/10 border border-cyan-bright/25 text-cyan-bright text-[11px] font-sans font-medium tracking-wider uppercase mb-1"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-bright"></span>
               </span>
-              <span>🌙 IA Inmobiliaria 24/7</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-champagne" />
-              <span className="text-champagne font-semibold font-sans tracking-normal lowcase">Boutique</span>
+              <span>🌙 Recepción Inmobiliaria 24/7</span>
             </motion.div>
 
             {/* Main Title H1 */}
@@ -145,9 +143,9 @@ export default function HeroSection({ onOpenDemo }: HeroSectionProps) {
         {/* --- MOBILE VIEW LAYOUT (hidden on desktop, shown on mobile <= md) --- */}
         <div className="flex md:hidden flex-col items-center text-center space-y-6">
           
-          {/* 1. Pill: IA Inmobiliaria 24/7 */}
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-bright/10 border border-cyan-bright/20 text-cyan-bright text-xs font-mono uppercase tracking-wide">
-            🌙 IA Inmobiliaria 24/7
+          {/* 1. Pill: Recepción Inmobiliaria 24/7 */}
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-cyan-bright/10 border border-cyan-bright/20 text-cyan-bright text-[11px] font-sans font-medium uppercase tracking-wider">
+            🌙 Recepción Inmobiliaria 24/7
           </div>
 
           {/* 2. Title: Reduced size, maximum 3 lines */}
@@ -176,7 +174,7 @@ export default function HeroSection({ onOpenDemo }: HeroSectionProps) {
             <div className="absolute top-10 w-44 h-44 rounded-full bg-cyan-500/10 blur-[80px]" />
             
             {/* Visual separator hinting to scroll / slide down */}
-            <div className="flex flex-col items-center gap-1.5 mb-6 text-slate-500 font-mono text-[9px] uppercase tracking-widest">
+            <div className="flex flex-col items-center gap-1.5 mb-6 text-slate-400 font-sans font-medium text-[11px] uppercase tracking-wider">
               <span>Demostración de flujo nocturno</span>
               <motion.div 
                 animate={{ y: [0, 4, 0] }}
@@ -185,7 +183,7 @@ export default function HeroSection({ onOpenDemo }: HeroSectionProps) {
               />
             </div>
 
-            <PhoneMockup />
+            <PhoneMockup compact />
           </div>
 
         </div>

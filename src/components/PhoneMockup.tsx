@@ -5,10 +5,15 @@ import Logo from './Logo';
 
 interface PhoneMockupProps {
   interactive?: boolean;
+  compact?: boolean;
+  className?: string;
 }
 
-export default function PhoneMockup({ interactive = false }: PhoneMockupProps) {
+export default function PhoneMockup({ interactive = false, compact = false, className = '' }: PhoneMockupProps) {
   const [step, setStep] = useState(0);
+  const sizeClasses = compact
+    ? 'max-w-[324px] aspect-[10/11] md:max-w-[340px] md:aspect-[9/19]'
+    : 'max-w-[340px] md:max-w-[340px] aspect-[8/9] md:aspect-[9/19]';
 
   useEffect(() => {
     if (interactive) return;
@@ -43,7 +48,7 @@ export default function PhoneMockup({ interactive = false }: PhoneMockupProps) {
   }, [interactive]);
 
   return (
-    <div id="phone-container" className="relative mx-auto w-full max-w-[340px] md:max-w-[380px] aspect-[8/9] md:aspect-[9/19] rounded-[36px] md:rounded-[40px] border-[3px] md:border-4 border-slate-800 bg-slate-950 p-2 md:p-3 shadow-2xl glass-panel-glow overflow-hidden">
+    <div className={`phone-container relative mx-auto w-full ${sizeClasses} rounded-[36px] md:rounded-[40px] border-[3px] md:border-4 border-slate-800 bg-slate-950 p-2 md:p-3 shadow-2xl glass-panel-glow overflow-hidden ${className}`}>
       {/* Dynamic Cyan Glow Backlight */}
       <div className="absolute -inset-10 bg-radial from-cyan-500/10 to-transparent pointer-events-none rounded-[40px]" />
 
@@ -63,7 +68,7 @@ export default function PhoneMockup({ interactive = false }: PhoneMockupProps) {
           </div>
           <div className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-champagne animate-pulse" />
-            <span className="text-[9px] px-1 rounded bg-cyan-bright/10 text-cyan-bright font-medium tracking-widest uppercase">24/7 AI</span>
+            <span className="text-[9px] px-1 rounded bg-cyan-bright/10 text-cyan-bright font-medium tracking-widest uppercase">24/7 ACTIVO</span>
           </div>
         </div>
 
@@ -85,8 +90,8 @@ export default function PhoneMockup({ interactive = false }: PhoneMockupProps) {
           
           {/* Welcome Intro (Always visible) */}
           <div className="text-center pb-4 border-b border-white/5 opacity-50">
-            <p className="text-[10px] text-slate-400 font-mono">Agente Oficial IACRECE</p>
-            <p className="text-[8px] text-slate-500">Guardián Nocturno de Leads</p>
+            <p className="text-[10px] text-slate-300 font-mono font-medium">Recepción Inmobiliaria IACRECE</p>
+            <p className="text-[8px] text-slate-500">Atención instantánea 24/7 sin esperas</p>
           </div>
 
           <AnimatePresence mode="popLayout">
@@ -102,8 +107,8 @@ export default function PhoneMockup({ interactive = false }: PhoneMockupProps) {
               >
                 <div className="bg-slate-800 text-slate-100 text-xs px-3 py-2.5 rounded-2xl rounded-br-xs shadow-md border border-white/5">
                   <div className="flex justify-between items-center mb-0.5 opacity-60">
-                    <span className="text-[8px] font-mono">Cliente Interesado</span>
-                    <span className="text-[8px] font-mono">03:15 AM</span>
+                    <span className="text-[8px] font-sans font-medium uppercase tracking-wider">Cliente Interesado</span>
+                    <span className="text-[8px] font-sans font-medium">03:15 AM</span>
                   </div>
                   <p className="leading-normal">Hola, acabo de salir de trabajar y vi el piso de Gran Vía. ¿Puedo verlo mañana?</p>
                 </div>
@@ -125,7 +130,7 @@ export default function PhoneMockup({ interactive = false }: PhoneMockupProps) {
               >
                 <Logo className="w-6 h-6 rounded-md shadow-[0_0_10px_rgba(0,240,255,0.1)] opacity-80" />
                 <div className="bg-navy-medium/90 border border-cyan-bright/25 px-4 py-2.5 rounded-2xl rounded-bl-sm flex items-center space-x-1 shadow-inner">
-                  <span className="text-[10px] text-cyan-bright/60 font-mono mr-1">IA</span>
+                  <span className="text-[10px] text-cyan-bright/60 font-mono mr-1">Virtual</span>
                   <div className="w-1.5 h-1.5 bg-cyan-bright rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                   <div className="w-1.5 h-1.5 bg-cyan-bright rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
                   <div className="w-1.5 h-1.5 bg-cyan-bright rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
@@ -146,8 +151,8 @@ export default function PhoneMockup({ interactive = false }: PhoneMockupProps) {
                 <Logo className="w-6 h-6 rounded-md shadow-[0_0_8px_rgba(0,240,255,0.2)]" />
                 <div className="bg-navy-medium border border-cyan-bright/30 text-white text-xs px-3 py-2.5 rounded-2xl rounded-bl-xs shadow-[0_4px_12px_rgba(0,240,255,0.05)]">
                   <div className="flex justify-between items-center mb-0.5">
-                    <span className="text-[8px] font-mono text-cyan-bright font-semibold">IACRECE (24/7 AI)</span>
-                    <span className="text-[8px] font-mono text-cyan-bright/60">03:15 AM</span>
+                    <span className="text-[8px] font-sans text-cyan-bright font-bold uppercase tracking-wider">Recepción IACRECE 24/7</span>
+                    <span className="text-[8px] font-sans text-cyan-bright/60 font-medium">03:15 AM</span>
                   </div>
                   <p className="leading-normal">¡Hola! Claro que sí, sigue disponible. Te he reservado un hueco mañana a las 18:00h. ¿Te encaja?</p>
                 </div>
@@ -174,7 +179,7 @@ export default function PhoneMockup({ interactive = false }: PhoneMockupProps) {
         {/* Mimic Chat Input Bar */}
         <div className="px-3 pt-2 pb-1 border-t border-white/5 bg-[#080E14] z-10 flex gap-1.5 items-center">
           <div className="flex-1 bg-slate-900 border border-white/10 rounded-full py-1.5 px-3 flex items-center text-[10px] text-slate-500 justify-between">
-            <span>IA está monitorizando el chat...</span>
+            <span>Servicio de respuesta activa 24/7...</span>
             <MessageSquare size={10} className="text-slate-600" />
           </div>
           <button className="w-7 h-7 rounded-full bg-cyan-bright/10 text-cyan-bright border border-cyan-bright/25 flex items-center justify-center shrink-0 hover:bg-cyan-bright/20 transition-all font-mono">

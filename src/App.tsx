@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import HeroSection from './components/HeroSection';
 import AuthoritySection from './components/AuthoritySection';
 import CalculatorSection from './components/CalculatorSection';
@@ -33,7 +33,7 @@ export default function App() {
       />
       <div className="fixed inset-0 noise-grain pointer-events-none z-10" />
 
-      {/* 1. Header Navigation Bar (Modern Boutique Styling) */}
+      {/* 1. Header Navigation Bar */}
       <header className="fixed top-0 left-0 w-full z-40 bg-navy-dark/70 backdrop-blur-md border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
           
