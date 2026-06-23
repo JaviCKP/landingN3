@@ -5,15 +5,10 @@ import Logo from './Logo';
 
 interface PhoneMockupProps {
   interactive?: boolean;
-  compact?: boolean;
-  className?: string;
 }
 
-export default function PhoneMockup({ interactive = false, compact = false, className = '' }: PhoneMockupProps) {
+export default function PhoneMockup({ interactive = false }: PhoneMockupProps) {
   const [step, setStep] = useState(0);
-  const sizeClasses = compact
-    ? 'max-w-[324px] aspect-[10/11] md:max-w-[340px] md:aspect-[9/19]'
-    : 'max-w-[340px] md:max-w-[340px] aspect-[8/9] md:aspect-[9/19]';
 
   useEffect(() => {
     if (interactive) return;
@@ -48,7 +43,7 @@ export default function PhoneMockup({ interactive = false, compact = false, clas
   }, [interactive]);
 
   return (
-    <div className={`phone-container relative mx-auto w-full ${sizeClasses} rounded-[36px] md:rounded-[40px] border-[3px] md:border-4 border-slate-800 bg-slate-950 p-2 md:p-3 shadow-2xl glass-panel-glow overflow-hidden ${className}`}>
+    <div id="phone-container" className="relative mx-auto w-full max-w-[340px] md:max-w-[300px] aspect-[8/9] md:aspect-[9/19] rounded-[36px] md:rounded-[40px] border-[3px] md:border-4 border-slate-800 bg-slate-950 p-2 md:p-3 shadow-2xl glass-panel-glow overflow-hidden">
       {/* Dynamic Cyan Glow Backlight */}
       <div className="absolute -inset-10 bg-radial from-cyan-500/10 to-transparent pointer-events-none rounded-[40px]" />
 
@@ -170,7 +165,7 @@ export default function PhoneMockup({ interactive = false, compact = false, clas
                 className="bg-emerald-500/10 border border-emerald-500/40 text-emerald-300 text-[11px] font-medium py-2 px-3 rounded-xl flex items-center justify-center gap-2 shadow-[0_4px_12px_rgba(16,185,129,0.1)] mx-8 animate-pulse"
               >
                 <CheckCircle2 size={13} className="text-emerald-400 shrink-0" />
-                <span className="font-semibold">✅ Visita Cerrada con Éxito</span>
+                <span className="font-semibold">Visita Cerrada con Éxito</span>
               </motion.div>
             )}
           </AnimatePresence>

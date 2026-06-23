@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Send, CheckCircle2, User, Bot, RefreshCw } from 'lucide-react';
+import { X, Send, CheckCircle2, User, Bot, RefreshCw, Building2, Key, LineChart, Scale } from 'lucide-react';
 import { Message } from '../types';
 import Logo from './Logo';
 
@@ -23,7 +23,7 @@ export default function DemoInteractiveModal({ isOpen, onClose }: DemoInteractiv
     {
       id: 'granvia',
       title: 'Visita Gran Vía (03:15 AM)',
-      emoji: '🏢',
+      icon: Building2,
       time: '03:15 AM',
       initialMessage: 'Hola, estoy interesado en el piso de Gran Vía de 420.000€. ¿Se podría visitar mañana por la tarde?',
       responses: [
@@ -39,7 +39,7 @@ export default function DemoInteractiveModal({ isOpen, onClose }: DemoInteractiv
         },
         {
           trigger: 2,
-          text: '¡Guardado con éxito! ✅ Acabo de registrar tu visita y te he enviado la dirección exacta y el contacto del asesor David a tu email. ¡Nos vemos mañana!',
+          text: '¡Guardado con éxito! Acabo de registrar tu visita y te he enviado la dirección exacta y el contacto del asesor David a tu email. ¡Nos vemos mañana!',
           time: '03:16 AM',
           book: true
         }
@@ -48,7 +48,7 @@ export default function DemoInteractiveModal({ isOpen, onClose }: DemoInteractiv
     {
       id: 'alquiler',
       title: 'Alquiler Ático (11:45 PM)',
-      emoji: '🔑',
+      icon: Key,
       time: '11:45 PM',
       initialMessage: 'Hola, veo el ático de alquiler en la web. Tengo solvencia demostrable y contrato indefinido. ¿Aceptan mascotas?',
       responses: [
@@ -73,7 +73,7 @@ export default function DemoInteractiveModal({ isOpen, onClose }: DemoInteractiv
     {
       id: 'presupuesto',
       title: 'Estudio de Hipoteca (01:10 AM)',
-      emoji: '📊',
+      icon: LineChart,
       time: '01:10 AM',
       initialMessage: 'Hola. ¿Para un piso de 300.000€ hacéis estudio de viabilidad hipotecaria gratuito si os dejo los datos?',
       responses: [
@@ -98,13 +98,13 @@ export default function DemoInteractiveModal({ isOpen, onClose }: DemoInteractiv
     {
       id: 'dudas',
       title: 'Dudas Técnicas (02:40 AM)',
-      emoji: '⚖️',
+      icon: Scale,
       time: '02:40 AM',
       initialMessage: 'Buenas noches, disculpad las horas con preguntas así. ¿Cuánto tardáis en vender una propiedad de media con vosotros?',
       responses: [
         {
           trigger: 0,
-          text: '¡Buenas noches! No te preocupes por la hora, para eso estoy disponible 24/7. ⏱️ De media, vendemos propiedades en menos de 45 días gracias a nuestro sistema de cruce de datos instantáneo y posicionamiento premium.\n\nPara asesorarte, ¿estás vendiendo una propiedad o valorando comprar una y necesitas orientación?',
+          text: '¡Buenas noches! No te preocupes por la hora, para eso estoy disponible 24/7. De media, vendemos propiedades en menos de 45 días gracias a nuestro sistema de cruce de datos instantáneo y posicionamiento premium.\n\nPara asesorarte, ¿estás vendiendo una propiedad o valorando comprar una y necesitas orientación?',
           time: '02:40 AM'
         },
         {
@@ -351,6 +351,7 @@ export default function DemoInteractiveModal({ isOpen, onClose }: DemoInteractiv
             <div className="space-y-2.5 md:space-y-3 flex-1">
               {scenarios.map((scenario) => {
                 const isSelected = selectedScenario === scenario.id;
+                const Icon = scenario.icon;
                 return (
                   <button
                     key={scenario.id}
@@ -366,7 +367,7 @@ export default function DemoInteractiveModal({ isOpen, onClose }: DemoInteractiv
                     )}
                     
                     <div className="flex items-center justify-between">
-                      <span className="font-semibold text-xs md:text-sm font-display text-white">{scenario.emoji} {scenario.title}</span>
+                      <span className="font-semibold text-xs md:text-sm font-display text-white inline-flex items-center gap-1.5"><Icon size={16} className="text-cyan-bright" /> {scenario.title}</span>
                     </div>
                   </button>
                 );
@@ -405,7 +406,7 @@ export default function DemoInteractiveModal({ isOpen, onClose }: DemoInteractiv
                   <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-[#05090F]" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-semibold text-white font-display">Asistente Virtual IACRECE</h4>
+                  <h4 className="text-xs font-semibold text-white font-display">Agente de Ventas IA CRECE</h4>
                   <p className="text-[9px] font-mono text-emerald-400 flex items-center gap-1">
                     <span className="inline-block w-1 h-1 rounded-full bg-emerald-400 animate-pulse" />
                     En línea • Automatizado 24/7

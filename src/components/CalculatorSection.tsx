@@ -12,6 +12,7 @@ export default function CalculatorSection() {
   });
 
   const [showFormulaInfo, setShowFormulaInfo] = useState(false);
+  const [showImpact, setShowImpact] = useState(false);
 
   // Response time configurations with their corresponding leak (fugados) percentage
   const responseTiers = {
@@ -228,14 +229,33 @@ export default function CalculatorSection() {
           </div>
 
           {/* Right Column: Live Dynamic Results */}
-          <div className="w-full lg:w-[45%] flex flex-col justify-between glass-panel-glow p-5 sm:p-6 md:p-8 rounded-2xl border-cyan-bright/35 relative overflow-hidden">
+          <div className="w-full lg:w-[45%] flex flex-col justify-between glass-panel-glow p-5 sm:p-6 md:p-8 rounded-2xl border-cyan-bright/35 relative overflow-hidden transition-all duration-500">
+            {!showImpact && (
+              <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-6 bg-black/85 backdrop-blur-lg">
+                <div className="text-center max-w-sm mb-6 animate-fade-in px-4">
+                  <h4 className="text-lg font-display text-white font-semibold mb-2">Simulación de Pérdida y Retorno</h4>
+                  <p className="text-xs text-slate-400">Descubre cuánto dinero está dejando escapar tu agencia inmobiliaria basándonos en tus tiempos de respuesta actuales.</p>
+                </div>
+                <div className="relative group">
+                  <div className="absolute -inset-1.5 rounded-xl bg-gradient-to-r from-cyan-400 via-cyan-bright to-blue-500 opacity-75 blur-md group-hover:opacity-100 transition duration-300 animate-pulse" />
+                  <button 
+                    onClick={() => setShowImpact(true)} 
+                    className="relative flex items-center gap-2.5 bg-[#00D8ED] text-black font-sans font-bold px-7 py-4 rounded-xl tracking-tight text-sm shadow-2xl hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 cursor-pointer"
+                  >
+                    <TrendingUp size={16} className="text-black shrink-0 animate-bounce" />
+                    Quiero ver el impacto financiero
+                  </button>
+                </div>
+              </div>
+            )}
+            
             {/* Ambient Background Glow inside Results Panel */}
             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-cyan-bright to-transparent" />
             <div className="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-cyan-500/10 blur-[100px] pointer-events-none" />
 
             <div className="flex flex-col space-y-4">
               <span className="text-[10px] font-mono tracking-widest text-cyan-bright bg-cyan-bright/10 px-2.5 py-1 rounded w-fit self-start uppercase">
-                🚀 Ventas con Automatización
+                Ventas con Automatización
               </span>
               <h3 className="text-xl font-display text-white font-medium leading-normal">
                 Impacto Financiero de Respuesta 24/7
@@ -243,7 +263,7 @@ export default function CalculatorSection() {
             </div>
 
             {/* Live calculated records stack */}
-            <div className="space-y-4 my-6">
+            <div className={`space-y-4 my-6 transition-all duration-300 ${!showImpact ? 'blur-[8px] opacity-40 select-none' : ''}`}>
               
               {/* Lost leads count */}
               <div className="flex items-center gap-3.5 p-3.5 rounded-xl bg-red-500/5 border border-red-500/15">
@@ -285,16 +305,16 @@ export default function CalculatorSection() {
               </div>
 
               {/* Record 3: Retorno potencial estimado */}
-              <div className="flex items-center gap-4 p-4 rounded-xl bg-champagne/5 border border-champagne/20 relative">
-                <div className="w-10 h-10 rounded-lg bg-champagne/15 flex items-center justify-center text-champagne border border-champagne/25 shrink-0 shadow-[0_0_12px_rgba(240,230,210,0.15)]">
+              <div className="flex items-center gap-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 relative shadow-[0_4px_25px_rgba(16,185,129,0.1)]">
+                <div className="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-300 border border-emerald-500/40 shrink-0 shadow-[0_0_15px_rgba(16,185,129,0.3)]">
                   <DollarSign size={18} />
                 </div>
                 <div className="flex-1">
-                  <p className="text-[10px] text-champagne font-semibold font-mono">📈 CAPTACIÓN DE FACTURACIÓN ANUAL RESCATADA</p>
-                  <p className="text-xl sm:text-2xl font-bold text-white mt-0.5 font-display">
-                    +{calculations.potentialAnnualReturn.toLocaleString('es-ES')} € <span className="text-xs font-normal text-slate-400 font-sans">/ año</span>
+                  <p className="text-[10px] text-emerald-400 font-bold font-mono">📈 CAPTACIÓN DE FACTURACIÓN ANUAL RESCATADA</p>
+                  <p className="text-xl sm:text-2xl font-bold text-emerald-400 mt-0.5 font-display">
+                    +{calculations.potentialAnnualReturn.toLocaleString('es-ES')} € <span className="text-xs font-normal text-emerald-300/80 font-sans">/ año</span>
                   </p>
-                  <p className="text-[10px] text-slate-300 mt-1">
+                  <p className="text-[10px] text-emerald-300 mt-1 font-medium">
                     ({calculations.potentialMonthlyReturn.toLocaleString('es-ES')} € de facturación extra al mes)
                   </p>
                 </div>
@@ -303,7 +323,7 @@ export default function CalculatorSection() {
             </div>
 
             {/* Clear, Statistics-backed Breakdown block */}
-            <div className="p-3.5 rounded-xl bg-slate-900/80 border border-white/5 text-[11px] leading-relaxed text-slate-300">
+            <div className={`p-3.5 rounded-xl bg-slate-900/80 border border-white/5 text-[11px] leading-relaxed text-slate-300 transition-all duration-300 ${!showImpact ? 'blur-[8px] opacity-40 select-none' : ''}`}>
               <span className="font-bold text-white block mb-1">🔍 Desglose Técnico del Cálculo:</span>
               El cálculo estimativo basado en la pérdida estadística del <span className="text-red-400 font-bold font-mono">{calculations.lossPercent}%</span> de los <span className="text-cyan-bright font-bold font-mono">{calculations.monthlyLeads}</span> leads mensuales (basado en {state.weeklyLeads} por semana) estimando un <span className="text-emerald-400 font-bold font-mono">3%</span> de conversión promedio de leads recuperados en venta final, y una comisión por transacción de <span className="text-white font-bold font-mono">{calculations.avgCommissionFee.toLocaleString('es-ES')} €</span> ({state.commissionPercent}% del valor de la propiedad de {state.avgPropertyPrice.toLocaleString('es-ES')} €).
             </div>
@@ -313,7 +333,7 @@ export default function CalculatorSection() {
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-4 p-3.5 rounded-xl bg-neutral-900 border border-white/10 text-[10px] text-slate-400 space-y-1.5"
+                className={`mt-4 p-3.5 rounded-xl bg-neutral-900 border border-white/10 text-[10px] text-slate-400 space-y-1.5 transition-all duration-300 ${!showImpact ? 'blur-[8px] opacity-40 select-none' : ''}`}
               >
                 <div className="font-bold text-white uppercase text-[9px] tracking-wider mb-0.5">Metodología y Fuentes:</div>
                 <p>• Los porcentajes de fuga (5%, 45%, 75%, 85%) están extraídos del reporte de <span className="text-slate-300">respuesta ágil del MIT / Harvard Business Review</span>, que demuestra cómo la probabilidad de contactar cae exponencialmente tras 5 minutos.</p>

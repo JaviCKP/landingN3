@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Calendar, Menu, X, ArrowRight } from 'lucide-react';
 import HeroSection from './components/HeroSection';
 import AuthoritySection from './components/AuthoritySection';
 import CalculatorSection from './components/CalculatorSection';
 import FooterSection from './components/FooterSection';
 import DemoInteractiveModal from './components/DemoInteractiveModal';
+import ContactFormModal from './components/ContactFormModal';
 import Logo from './components/Logo';
 
 export default function App() {
   const [isDemoOpen, setIsDemoOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleOpenDemo = () => {
     setIsDemoOpen(true);
+    setMobileMenuOpen(false);
+  };
+
+  const handleOpenContact = () => {
+    setIsContactOpen(true);
     setMobileMenuOpen(false);
   };
 
@@ -33,7 +40,7 @@ export default function App() {
       />
       <div className="fixed inset-0 noise-grain pointer-events-none z-10" />
 
-      {/* 1. Header Navigation Bar */}
+      {/* 1. Header Navigation Bar (Modern Boutique Styling) */}
       <header className="fixed top-0 left-0 w-full z-40 bg-navy-dark/70 backdrop-blur-md border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
           
@@ -44,8 +51,7 @@ export default function App() {
           >
             <Logo className="w-9 h-9 rounded-xl group-hover:scale-105 transition-all duration-300 shadow-[0_0_15px_rgba(0,216,237,0.3)]" />
             <span className="font-display font-bold text-lg md:text-xl tracking-tight text-white flex items-center gap-1.5">
-              IACRECE 
-              <span className="text-[10px] bg-champagne/10 text-champagne border border-champagne/20 font-mono tracking-widest uppercase px-1.5 py-0.5 rounded ml-1 scale-90">STUDIO</span>
+              IACRECE
             </span>
           </div>
 
@@ -115,9 +121,9 @@ export default function App() {
             <div className="pt-4 border-t border-white/5">
               <button
                 onClick={handleOpenDemo}
-                className="w-full text-center py-3 px-4 bg-cyan-bright text-neutral-950 rounded-xl font-semibold text-sm transition-all"
+                className="w-full text-center py-3 px-4 bg-cyan-bright text-neutral-950 rounded-xl font-semibold text-sm transition-all cursor-pointer"
               >
-                👉 Probar Demo Interactiva
+                Probar Demo Interactiva
               </button>
             </div>
           </div>
@@ -136,11 +142,14 @@ export default function App() {
         <CalculatorSection />
 
         {/* 2.4 Footer & Final Closing CTA Section */}
-        <FooterSection onOpenDemo={handleOpenDemo} />
+        <FooterSection onOpenDemo={handleOpenDemo} onOpenContact={handleOpenContact} />
       </main>
 
       {/* 3. Interactive Chat Bot Simulator Modal Panel Overlay */}
       <DemoInteractiveModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
+
+      {/* 4. Beautiful Contact Detail & Google Calendar Scheduler Modal Overlay */}
+      <ContactFormModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
 
     </div>
   );
